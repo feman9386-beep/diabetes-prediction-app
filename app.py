@@ -1,14 +1,16 @@
 import streamlit as st
 import pickle
+from pathlib import Path
 
 st.set_page_config(page_title="Diabetes Prediction App", page_icon="🩺")
 
 st.title("🩺 Diabetes Prediction App")
 st.write("Enter the patient information below to predict the diabetes outcome.")
 
-with open("logistic_regression_model.pkl", "rb") as f:
-    model = pickle.load(f)
+MODEL_PATH = Path(__file__).parent / "logistic_regression_model.pkl"
 
+with open(MODEL_PATH, "rb") as f:
+    model = pickle.load(f)
 st.subheader("Patient Information")
 
 col1, col2 = st.columns(2)
